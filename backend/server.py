@@ -101,7 +101,7 @@ class QuizSubmission(BaseModel):
     answers: List[QuizAnswer]
 
 class QuizResult(BaseModel):
-    recommended_paths: List[Dict[str, any]]
+    recommended_paths: List[dict]
     learning_style: str
     estimated_completion_weeks: int
 
