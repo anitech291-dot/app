@@ -171,74 +171,126 @@ const Quiz = () => {
 
   const question = questions[currentQuestion];
   const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const answeredCount = answers.filter(a => a).length;
 
   return (
-    <div className="quiz-container">
-      <div className="quiz-card">
-        <div className="quiz-header">
-          <div className="quiz-progress-bar">
-            <div 
-              className="quiz-progress-fill" 
-              style={{ width: `${progress}%` }}
-            ></div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20 pb-12 px-4">
+      <div className="max-w-3xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-4 shadow-lg shadow-indigo-500/50">
+            <Brain size={32} className="text-white" />
           </div>
-          <p className="quiz-progress-text">
-            Question {currentQuestion + 1} of {questions.length}
-          </p>
+          <h1 className="text-3xl font-bold text-white mb-2">Career Assessment</h1>
+          <p className="text-gray-400">Help us understand your goals and preferences</p>
         </div>
 
-        <div className="quiz-content">
-          <h2 className="quiz-question">{question.question}</h2>
+        {/* Quiz Card */}
+        <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-2xl mb-6">
+          {/* Progress Section */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-medium text-gray-400">
+                Question {currentQuestion + 1} of {questions.length}
+              </span>
+              <span className="text-sm font-medium text-blue-400">
+                {answeredCount}/{questions.length} answered
+              </span>
+            </div>
+            <Progress value={progress} className="h-2" />
+          </div>
 
-          <div className="quiz-options">
-            {question.options.map((option, index) => (
-              <button
-                key={index}
-                className={`quiz-option ${
-                  answers[currentQuestion]?.selected_option === index ? 'selected' : ''
-                }`}
-                onClick={() => handleAnswer(index)}
+          {/* Question */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-white mb-6 leading-relaxed">
+              {question.question}
+            </h2>
+
+            {/* Options */}
+            <div className="space-y-3">
+              {question.options.map((option, index) => {
+                const isSelected = answers[currentQuestion]?.selected_option === index;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswer(index)}
+                    className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-300 ${
+                      isSelected
+                        ? 'border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/20'
+                        : 'border-slate-600 bg-slate-900 hover:border-slate-500 hover:bg-slate-800/50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                        isSelected ? 'border-blue-500' : 'border-slate-600'
+                      }`}>
+                        {isSelected && (
+                          <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                        )}
+                      </div>
+                      <span className={`text-base ${
+                        isSelected ? 'text-white font-medium' : 'text-gray-300'
+                      }`}>
+                        {option.text}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-between gap-4 pt-6 border-t border-slate-700">
+            <Button
+              onClick={handlePrevious}
+              disabled={currentQuestion === 0}
+              variant="outline"
+              className="bg-slate-900 border-slate-600 text-gray-300 hover:bg-slate-700 hover:text-white disabled:opacity-30 h-12 px-6"
+            >
+              <ArrowLeft size={18} className="mr-2" />
+              Previous
+            </Button>
+
+            {currentQuestion < questions.length - 1 ? (
+              <Button
+                onClick={handleNext}
+                disabled={!answers[currentQuestion]}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white h-12 px-6 shadow-lg shadow-blue-500/30 disabled:opacity-50"
               >
-                <span className="quiz-option-radio">
-                  {answers[currentQuestion]?.selected_option === index && (
-                    <span className="quiz-option-dot"></span>
-                  )}
-                </span>
-                <span className="quiz-option-text">{option.text}</span>
-              </button>
-            ))}
+                Next
+                <ArrowRight size={18} className="ml-2" />
+              </Button>
+            ) : (
+              <Button
+                onClick={handleSubmit}
+                disabled={answers.length !== questions.length || submitting}
+                className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white h-12 px-8 shadow-lg shadow-green-500/30 disabled:opacity-50"
+              >
+                {submitting ? (
+                  <span className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Submitting...
+                  </span>
+                ) : (
+                  <span className="flex items-center gap-2">
+                    <CheckCircle2 size={18} />
+                    Complete Assessment
+                  </span>
+                )}
+              </Button>
+            )}
           </div>
         </div>
 
-        <div className="quiz-actions">
-          <Button
-            onClick={handlePrevious}
-            disabled={currentQuestion === 0}
-            variant="outline"
-            className="quiz-nav-button"
-          >
-            <ArrowLeft size={18} className="mr-2" />
-            Previous
-          </Button>
-
-          {currentQuestion < questions.length - 1 ? (
-            <Button
-              onClick={handleNext}
-              disabled={!answers[currentQuestion]}
-              className="quiz-nav-button"
-            >
-              Next
-              <ArrowRight size={18} className="ml-2" />
-            </Button>
-          ) : (
-            <Button
-              onClick={handleSubmit}
-              disabled={answers.length !== questions.length || submitting}
-              className="quiz-submit-button"
-            >
-              {submitting ? 'Submitting...' : 'Complete Assessment'}
-            </Button>
-          )}
+        {/* Tips */}
+        <div className="bg-indigo-500/10 border border-indigo-500/30 rounded-xl p-4">
+          <div className="flex items-start gap-3">
+            <Sparkles size={20} className="text-indigo-400 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-gray-300">
+              <span className="font-semibold text-white">Pro tip:</span> Answer honestly to get the most accurate career recommendations tailored to your interests and goals.
+            </p>
+          </div>
         </div>
       </div>
     </div>
