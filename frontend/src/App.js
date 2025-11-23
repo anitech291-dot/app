@@ -9,7 +9,6 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import PathDetail from './pages/PathDetail';
-import Quiz from './pages/Quiz';
 import Achievements from './pages/Achievements';
 import Certificates from './pages/Certificates';
 import Profile from './pages/Profile';
@@ -54,15 +53,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <PathDetail />
-              </ProtectedRoute>
-            }
-          />
-          
-          <Route
-            path="/quiz"
-            element={
-              <ProtectedRoute>
-                <Quiz />
               </ProtectedRoute>
             }
           />
