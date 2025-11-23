@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import { Award, Download, Share2 } from 'lucide-react';
+import { Award, Download, Share2, X, ExternalLink } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const CertificateGenerator = ({ pathId, pathName, completionPercentage }) => {
+const CertificateGenerator = ({ pathId, userId, onClose }) => {
   const [generating, setGenerating] = useState(false);
   const [certificate, setCertificate] = useState(null);
   const { token } = useAuth();
