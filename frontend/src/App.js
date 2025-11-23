@@ -364,7 +364,7 @@ const Home = () => {
                     onClick={() => toggleMilestoneComplete(selectedMilestone.id)}
                   >
                     {userProgress.completed_milestones?.includes(selectedMilestone.id) ? (
-                      <><Check size={18} className="mr-2" /> Completed</>
+                      <><LucideIcons.Check size={18} className="mr-2" /> Completed</>
                     ) : (
                       <>Mark as Complete</>
                     )}
