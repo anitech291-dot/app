@@ -575,6 +575,13 @@ async def get_user_achievements(user_id: str):
     
     return {"user_id": user_id, "achievements": list(all_achievements)}
 
+
+@api_router.get("/user/{user_id}/certificates")
+async def get_user_certificates(user_id: str):
+    """Get all certificates earned by a user"""
+    certificates = await db.certificates.find({"user_id": user_id}, {"_id": 0}).to_list(100)
+    return certificates
+
 # Include router
 app.include_router(api_router)
 
