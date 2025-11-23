@@ -74,9 +74,9 @@ const ICON_MAP = {
 };
 
 const RESOURCE_ICONS = {
-  video: LucideIcons.Video,
-  article: LucideIcons.FileText,
-  course: LucideIcons.BookOpen
+  video: Video,
+  article: FileText,
+  course: BookOpen
 };
 
 const Home = () => {
