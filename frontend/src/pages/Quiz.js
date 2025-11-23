@@ -93,32 +93,46 @@ const Quiz = () => {
 
   if (results) {
     return (
-      <div className="quiz-results-container">
-        <div className="quiz-results-card">
-          <div className="quiz-results-header">
-            <CheckCircle2 size={64} className="quiz-success-icon" />
-            <h1 className="quiz-results-title">Assessment Complete!</h1>
-            <p className="quiz-results-subtitle">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20 pb-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          {/* Success Header */}
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full mb-4 animate-bounce shadow-lg shadow-green-500/50">
+              <CheckCircle2 size={40} className="text-white" />
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-2">Assessment Complete!</h1>
+            <p className="text-gray-400 text-lg">
               We've analyzed your responses and created a personalized learning path
             </p>
           </div>
 
-          <div className="quiz-recommendations">
-            <h2 className="quiz-section-title">Recommended Career Paths</h2>
-            <div className="quiz-paths-list">
+          {/* Recommended Paths */}
+          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 mb-6 shadow-xl">
+            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              <Target className="text-blue-400" />
+              Recommended Career Paths
+            </h2>
+            <div className="space-y-4">
               {results.recommended_paths.map((path, index) => (
-                <div key={path.path_id} className="quiz-path-card">
-                  <div className="quiz-path-rank">#{index + 1}</div>
-                  <div className="quiz-path-info">
-                    <h3 className="quiz-path-name">{path.path_name}</h3>
-                    <p className="quiz-path-reason">{path.reason}</p>
-                    <div className="quiz-path-meta">
-                      <span className="quiz-meta-badge">
-                        📅 ~{path.estimated_weeks} weeks
-                      </span>
-                      <span className="quiz-meta-badge">
-                        🎯 Match: {path.score}%
-                      </span>
+                <div 
+                  key={path.path_id} 
+                  className="bg-slate-900 border border-slate-600 rounded-xl p-6 hover:border-blue-500 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                      #{index + 1}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-white mb-2">{path.path_name}</h3>
+                      <p className="text-gray-400 mb-4">{path.reason}</p>
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/30 rounded-lg text-blue-400 text-sm font-medium">
+                          📅 ~{path.estimated_weeks} weeks
+                        </span>
+                        <span className="px-3 py-1 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm font-medium">
+                          🎯 Match: {path.score}%
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,9 +140,13 @@ const Quiz = () => {
             </div>
           </div>
 
-          <div className="quiz-learning-style">
-            <h3 className="quiz-style-title">Your Learning Style</h3>
-            <p className="quiz-style-text">
+          {/* Learning Style */}
+          <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-2xl p-8 mb-6 shadow-xl">
+            <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
+              <Brain className="text-purple-400" />
+              Your Learning Style
+            </h3>
+            <p className="text-gray-300 text-lg">
               {results.learning_style === 'video' && '🎥 Video Tutorials - Visual learning works best for you'}
               {results.learning_style === 'article' && '📚 Reading & Documentation - You prefer in-depth written content'}
               {results.learning_style === 'course' && '🎯 Hands-on Projects - You learn by doing'}
@@ -136,12 +154,15 @@ const Quiz = () => {
             </p>
           </div>
 
+          {/* Complete Button */}
           <Button
             onClick={handleComplete}
-            className="quiz-complete-button"
+            className="w-full h-14 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold text-lg rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-blue-500/50"
           >
-            Start Learning
-            <ArrowRight size={18} className="ml-2" />
+            <span className="flex items-center justify-center gap-2">
+              Start Learning Journey
+              <ArrowRight size={20} />
+            </span>
           </Button>
         </div>
       </div>
