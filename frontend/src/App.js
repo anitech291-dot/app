@@ -191,7 +191,7 @@ const Home = () => {
               
               {!selectedPath && (
                 <div className="search-container">
-                  <Search className="search-icon" size={18} />
+                  <LucideIcons.Search className="search-icon" size={18} />
                   <Input
                     data-testid="search-input"
                     type="text"
