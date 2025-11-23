@@ -392,7 +392,7 @@ const Home = () => {
                             <h5 className="resource-title">{resource.title}</h5>
                             <span className="resource-type">{resource.type}</span>
                           </div>
-                          <ExternalLink size={18} className="external-icon" />
+                          <LucideIcons.ExternalLink size={18} className="external-icon" />
                         </a>
                       );
                     })}
