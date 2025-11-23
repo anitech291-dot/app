@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '@/App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import { Moon, Sun, Search, Code, Shield, Brain, BarChart3, Cube, Cloud, ChevronRight, ExternalLink, Video, FileText, BookOpen, Check, X } from 'lucide-react';
+import { Moon, Sun, Search, ChevronRight, ExternalLink, Video, FileText, BookOpen, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
