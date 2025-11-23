@@ -10,13 +10,21 @@ import { Progress } from '@/components/ui/progress';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Icon components defined directly
+const CodeIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>;
+const ShieldIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>;
+const BrainIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2a3 3 0 0 0-3 3 3 3 0 0 0-3 3 3 3 0 0 0-3 3c0 1.5 1 2.5 2 3 0 1.5 1 2.5 2 3 0 1.5 1 3 3 3s3-1.5 3-3c1 0 2-1.5 2-3 1 0 2-1.5 2-3 0-1.5-1-2.5-2-3a3 3 0 0 0-3-3 3 3 0 0 0-3-3z"></path></svg>;
+const ChartIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>;
+const CubeIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>;
+const CloudIcon = () => <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>;
+
 const ICON_MAP = {
-  code: Code,
-  shield: Shield,
-  brain: Brain,
-  chart: BarChart3,
-  cube: Cube,
-  cloud: Cloud
+  code: CodeIcon,
+  shield: ShieldIcon,
+  brain: BrainIcon,
+  chart: ChartIcon,
+  cube: CubeIcon,
+  cloud: CloudIcon
 };
 
 const RESOURCE_ICONS = {
